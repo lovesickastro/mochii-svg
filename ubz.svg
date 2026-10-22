@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="100%" height="100%" viewBox="0 0 1920 1080">
+  <foreignObject id="fo" width="1920" height="1080" x="0" y="0">
+    <xhtml:html xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;margin:0;padding:0;">
+    <xhtml:head>
+      <xhtml:title>unblockedzone</xhtml:title>
+      <xhtml:style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+        iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+      </xhtml:style>
+    </xhtml:head>
+    <xhtml:body>
+      <xhtml:iframe id="fm" src="about:blank"></xhtml:iframe>
+      <xhtml:script>
+      //<![CDATA[
+        (function() {
+          function size() {
+            var w = window.innerWidth, h = window.innerHeight;
+            var svg = document.querySelector("svg");
+            var fo  = document.querySelector("foreignObject");
+            if (svg) { svg.setAttribute("width", w); svg.setAttribute("height", h); svg.setAttribute("viewBox","0 0 "+w+" "+h); }
+            if (fo)  { fo.setAttribute("width", w);  fo.setAttribute("height", h); }
+          }
+          size();
+          window.addEventListener("resize", size);
+          var mirrors = ["https://quantil.jsdelivr.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://gcore.jsdelivr.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://originfastly.jsdelivr.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://fastly.jsdelivr.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://testingcf.jsdelivr.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://jsdelivr.b-cdn.net/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://jsd.onmicrosoft.cn/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://cdn.jsdmirror.com/gh/s0n-1m-cr1n3/sc13nc3/assets/index.html", "https://cdn.statically.io/gh/s0n-1m-cr1n3/sc13nc3@main/assets/index.html", "https://cdn.staticdelivr.com/gh/s0n-1m-cr1n3/sc13nc3/main/assets/index.html"];
+          (function load(i) {
+            if (i >= mirrors.length) { console.error("All mirrors failed"); return; }
+            fetch(mirrors[i] + "?t=" + Date.now()).then(function(res){ if (!res.ok) return Promise.reject(); return res.text(); })
+              .then(function(text){
+                var frame = document.getElementById("fm");
+                var fdoc = frame.contentDocument || frame.contentWindow.document;
+                fdoc.open();
+                fdoc.write(text);
+                fdoc.close();
+              }).catch(function(){ load(i + 1); });
+          })(0);
+        })();
+      //]]>
+      </xhtml:script>
+    </xhtml:body>
+    </xhtml:html>
+  </foreignObject>
+</svg>
